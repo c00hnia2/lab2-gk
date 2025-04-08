@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyśrodkowany rysunek w Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="200" height="300"></canvas>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = "blue";
+
+        const centerX = canvas.width / 2;
+        const leftX = centerX - 50;
+        const rightX = centerX + 50;
+        const startY = (canvas.height - 150) / 2;
+
+        // Górny trójkąt (skierowany w górę)
+        ctx.beginPath();
+        ctx.moveTo(centerX, startY + 50);    // Wierzchołek (dolna krawędź trójkąta, stykająca się z prostokątem)
+        ctx.lineTo(leftX, startY + 0);       // Lewy górny róg
+        ctx.lineTo(rightX, startY + 0);      // Prawy górny róg
+        ctx.closePath();
+        ctx.fill();
+
+        // Prostokąt
+        ctx.fillRect(leftX, startY + 50, 100, 50);
+
+        // Dolny trójkąt (skierowany w dół)
+        ctx.beginPath();
+        ctx.moveTo(centerX, startY + 100);
+        ctx.lineTo(leftX, startY + 150);
+        ctx.lineTo(rightX, startY + 150);
+        ctx.closePath();
+        ctx.fill();
+    </script>
+</body>
+</html>
